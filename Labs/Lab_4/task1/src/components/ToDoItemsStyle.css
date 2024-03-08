@@ -1,0 +1,30 @@
+.todo-items {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.select-container {
+    margin-bottom: 10px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.task-stage {
+    margin-right: 10px;
+}
+
+.empty {
+    text-align: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.empty p {
+    color: gray;
+}

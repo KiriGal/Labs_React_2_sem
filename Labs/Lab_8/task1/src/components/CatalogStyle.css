@@ -1,0 +1,77 @@
+.watches-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    margin-top: 4%;
+}
+
+.watch {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 46%;
+    border: 1px solid black;
+    border-radius: 1%;
+    overflow: hidden;
+    margin: 1% 0% 1% 0%;
+    padding: 1%;
+}
+
+.watch-slider {
+    width: 49%;
+}
+
+.watch-description {
+    width: 49%;
+}
+.watch-offer {
+    display: flex;
+    position: absolute;
+    z-index: 2;
+}
+.watch-new {
+    padding: 10%;
+    width: auto;
+    margin-right: 5%;
+    background-color: #eae4e4;
+}
+.watch-discount {
+    padding: 10px;
+    width: auto;
+    background-color: darkred;
+    color: white;
+}
+
+
+
+.slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.arrow-left {
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+    transform: translate(0, -50%);
+    top: 50%;
+    font-size: 300%;
+}
+.arrow-right {
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+    right: 0%;
+    transform: translate(0, -50%);
+    top: 50%;
+    font-size: 300%;
+}
+.slide {
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
