@@ -79,18 +79,116 @@ const watches = [
 ];
 
 const defaultState = {
-    catalog: watches,
-    basket: [0,1]
+    catalog: {
+        watches: watches.map((item) => {
+            return {...item, addedToBasket: false}
+        }),
+        config: [{key: "Name", direction: 'asc'}]
+    },
+    basket: {
+        list: {
+            watch: []
+        },
+    },
+    order: {
+        deliveryMethod: "",
+        paymentMethod: "",
+        address: "",
+        currentPage: 1
+    },
+    listOrders: []
 };
 
 
 
 const reducers = (state = defaultState, action) => {
     switch (action.type){
+        case 'SET_CATALOG_CONFIG':
+            return {...state, catalog: {watches: state.catalog.watches, config: action.value}}
         case 'ADD_ITEM_BASKET':
-            if(!state.basket.includes(action.item)) return {...state, basket: [...state.basket, action.item]}
+            for(const watch in state.basket.list.watch){
+                if(watch.Name === action.item.watch.Name) return state;
+            }
+            action.item.watch.addedToBasket = true;
+            console.log(action.item.watch);
+            return {
+                ...state,
+                catalog: {
+                    watches: [...state.catalog.watches.map((item) => {
+                        return action.item.watch.Name === item.Name ? action.item.watch : item;
+                    })],
+                    config: state.catalog.config
+                },
+                basket: {
+                    list: {
+                        watch: [...state.basket.list.watch, {...action.item.watch, selected: false, count: 1}]
+                    }
+                }
+            }
         case 'DELETE_ITEM_BASKET':
-            return {...state, basket: [state.basket.filter((item) => !JSON.stringify(item) ===  JSON.stringify(action.item) )]}
+            action.item.watch.addedToBasket = false;
+            return {
+                ...state,
+                catalog: {
+                    watches: state.catalog.watches.map((item) => {
+                        return action.item.watch.Name === item.Name ? action.item.watch : item;
+                    }),
+                    config: state.catalog.config
+                },
+                basket: {
+                    list: {
+                        watch: [...state.basket.list.watch.filter((item) => {
+                            return item.Name !== action.item.watch.Name;
+                        })]
+                    }
+                }
+            }
+
+        case 'UPDATE_BASKET':
+            return {
+                ...state,
+                catalog: {
+                    watches: state.catalog.watches,
+                    config: state.catalog.config
+                },
+                basket: {
+                    list: {
+                        watch: [...action.item]
+                    }
+                }
+            }
+        case 'UPDATE_ORDER':
+            return {
+                ...state,
+                order: {
+                    deliveryMethod: action.deliveryMethod,
+                    paymentMethod: action.paymentMethod,
+                    address: action.address,
+                    currentPage: action.currentPage
+                }
+            }
+        case 'ADD_ORDER':
+            return {
+                ...state,
+                catalog: {
+                    watches: watches.map((item) => {
+                        return {...item, addedToBasket: false}
+                    }),
+                    config: [{key: "Name", direction: 'asc'}]
+                },
+                basket: {
+                    list: {
+                        watch: []
+                    },
+                },
+                order: {
+                    deliveryMethod: "",
+                    paymentMethod: "",
+                    address: "",
+                    currentPage: 1
+                },
+                listOrders: [...state.listOrders, {items: action.items, price: action.price}]
+            }
         default:
             return state;
     }

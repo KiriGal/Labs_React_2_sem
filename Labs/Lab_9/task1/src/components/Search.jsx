@@ -49,11 +49,11 @@ const Search = ({ProductCatalog}) => {
                 <div className="search-results">
                     {searchResults.map((product,index) => (
                         <div key={index}>
-                            <p><h3>{product.Name}</h3></p>
-                            <p>Количество: {product.Quantity}</p>
-                            <p>Цена: {product.Price}</p>
-                            <p>Цена со скидкой: {product.Price * (100 - product.Discount) / 100}</p>
-                            <p>Описание: {product.Description}</p>
+                            <p><h3>{product.name}</h3></p>
+                            <p>Количество: {product.quantity}</p>
+                            <p>Цена: {product.price}</p>
+                            <p>Цена со скидкой: {product.price * (100 - product.discount) / 100}</p>
+                            <p>Описание: {product.description}</p>
                         </div>
                     ))}
                 </div>

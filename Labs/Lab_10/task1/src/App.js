@@ -15,14 +15,16 @@ function App() {
                         <li>
                             <Link to="/catalog">Каталог</Link>
                         </li>
+                        <li><Link to="/basket/list">Корзина</Link></li>
                     </ul>
                 </nav>
             </header>
 
             <main>
                 <Routes>
+                    <Route path="/" element={<Catalog />}/>
                     <Route path="/catalog" element={<Catalog />}/>
-                    <Route path="/order-form" element={<OrderForm />}></Route>
+                    <Route path="/basket/list" element={<OrderForm />}></Route>
                 </Routes>
             </main>
         </Router>

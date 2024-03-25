@@ -13,6 +13,8 @@ function generateSecretWord(length) {
     return secretWord;
 }
 
+
+
 const Comments = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
